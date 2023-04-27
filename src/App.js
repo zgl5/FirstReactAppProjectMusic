@@ -1,65 +1,28 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
+import React from 'react'
 import {Container, InputGroup, FormControl, Button, Row, Card  } from 'react-bootstrap'
+import axios from 'axios'
 import {useState, useEffect} from 'react'
 
 
-
-
-
-
-
 function App() {
-const [searchInput, setSearchInput]= useState("")
-const [accessToken, setAccessToken]=useState("")
 
-useEffect=(() =>{               //set uup how to run and initialing API code
-//API Access Token
-var authParameters = {
-  //Host:'https://accounts.spotify.com/',
-  method:'POST',
-  headers:{
-    'Content-Type':'application/x-www-form-urlencoded',
-    //'Authorization': 'Basic ' + (new Buffer.from(client_id + ':' + client_secret).toString('base64'))
-  },
 
-  body:'grant_type=client_credentials&client_id=' + client_id + '&client_secret=' + client_secret 
-  //+ client_id + '&client_secret=' + client_secret + '&redirect_uri=' + redirect_uri 
-}
-
-fetch('https://accounts.spotify.com/api/token', authParameters)    //get access token from Spotify 
-  .then(result =>{
-    if (!result.ok){                                               // if can't get token to catch error
-      throw new Error('Failed to fetch access token from Spotify API')
-    }
-      return result.json()
-    })
-  .then(data => setAccessToken(data.access_token)
-  )
-  .catch(error=>{
-    console.log(error)
-  })
- },[])                    
-
-//search
-async function search(){
-  console.log("search " + searchInput)
-// Search with Artist ID
-const artistParameters = {
-  method:'GET',
-  headers:{
-    'Content-Type': 'application/json',
-    'Authorization':'Bearer' + accessToken
+ 
+  async function getData() {
+  try {
+    const response = await fetch(url, options);
+    const result = await response.json();
+    console.log(result.data[0].album.tracklist);
+    
+  } catch (error) {
+    console.error(error);
   }
-
 }
-const artistID = await fetch ('https://api.spotify.com/v1/search?q=' + searchInput + '&type=artist', artistParameters)
-.then(response=>response.json())
-.then(data=>console.log(data))
-
-}
-
+getData();
   return (
     <div className="App">
+      
       <Container>
         <InputGroup className='mp-3' size='lg'>
           <FormControl
@@ -67,14 +30,15 @@ const artistID = await fetch ('https://api.spotify.com/v1/search?q=' + searchInp
           type='input'
           onKeyDown={event=>{
             if (event.key==="Enter"){
-              search()
+             (console.log("hello"))
             }
           }}
-          onChange={event=>setSearchInput(event.target.value)}
+        
           />
-          <Button onClick= {search}>
+          <Button>
             Search
           </Button>
+
         </InputGroup>
       </Container>
           <Container>
@@ -85,15 +49,18 @@ const artistID = await fetch ('https://api.spotify.com/v1/search?q=' + searchInp
               <Card.Img src="#"/>
               <Card.Body>
                  <Card.Title>
-                Album Name
+               Album Name
                </Card.Title>
               </Card.Body>
            
             </Card>
             </Row>
           </Container>
+
+          
     </div>
   );
 }
 
 export default App;
+
