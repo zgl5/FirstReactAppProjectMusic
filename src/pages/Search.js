@@ -1,12 +1,12 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import React from 'react'
-import { Routes, Route } from "react-router-dom";
 import {Container, InputGroup, FormControl, Button, Row, Card  } from 'react-bootstrap'
 import {useState, useEffect} from 'react'
-import { Link } from "react-router-dom";
-import { Howl, Howler } from 'howler';
+import { Howl, Howler } from 'howler'; // for play music
+import { FaPlayCircle, FaPauseCircle } from 'react-icons/fa'; // for customazing the icons
+import { FaSearch } from 'react-icons/fa';
 
-
+const apikey= process.env.REACT_APP_RAPID_API_KEY
 
 function Search(props) {
 const [endPoint, setEndPoint]=useState('')
@@ -15,7 +15,12 @@ const [finalpoint, setFinalpoint]= useState('')
 
 
 useEffect(() =>{
-
+   fetch(`https://deezerdevs-deezer.p.rapidapi.com/search?q=+${endPoint}`, {
+   "method": 'GET',
+    "headers": {
+      'content-type': 'application/octet-stream',
+      'X-RapidAPI-Key':apikey,
+      'X-RapidAPI-Host': 'deezerdevs-deezer.p.rapidapi.com'
     }
   })
 
@@ -32,7 +37,7 @@ useEffect(() =>{
 .catch(err => {
   console.error(err)
 })
-}, [finalpoint])
+}, [finalpoint])   // to start to searh after clcik.
 
 const onChangeHandler = (e) => {
   setEndPoint(e.target.value);
@@ -80,21 +85,13 @@ const playTrack = (track) => {
   newHowler.play();
 };
 
-const stopTrack = () => {
-  if (howler) {
-    howler.stop();
-    setCurrentTrack(null);
-    setHowler(null);
-  }
-};
+
 
 return (
-    <div className="Search">
+<div className="Search">
 <Container>
-        <InputGroup className='mp-3' size='lg'>
-          <FormControl 
-          placeholder='Search'
-          type='input'
+        <InputGroup className='mp-3 mb-4 mt-4' size='lg' data-toggle="button">
+          <FormControl placeholder='Search' type='input'
           onKeyDown={event=>{
             if (event.key==="Enter"){
                 submitHandler();
@@ -104,23 +101,27 @@ return (
           /> 
           
           <Button onClick={submitHandler}>
-            Search
+          <FaSearch />
           </Button>
 
         </InputGroup>
       </Container>
           <Container>
-            <Row className='mx-2 row row-cols-4'>
+            <Row className=' row row-cols-6 g-4 justify-content-center'>
             {container.length>0 && container.map((item,i)=>{
             return (
                
-              <Card key={i}>
-              <Card.Img src={item.album.cover}/>
+              <Card key={i} className= 'm-3'>
+              <Card.Img className="img-thumbnail"  src={item.album.cover}/>
               <Card.Body>
                  <Card.Title> {item.title}</Card.Title>
               </Card.Body>
-              <Button onClick={() => playTrack(item)}>
-                {isPlaying && currentTrack === item ? "Stop" : "Play"}
+              <Button className="btn btn-light" onClick={() => playTrack(item)}>
+                {isPlaying && currentTrack === item ? 
+                 <FaPauseCircle size={40} color="#dc3545" />
+                 :
+                 <FaPlayCircle size={40} color="#198754" />
+                 }
               </Button>
                  </Card>
                 )
@@ -129,6 +130,7 @@ return (
           </Container>
   
     </div>
+ 
   );
 }
 
