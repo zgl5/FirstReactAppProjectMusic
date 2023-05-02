@@ -35,24 +35,4 @@ body{
     }
   }
 
-  .slider-wrapper {
-    position: relative;
-    overflow: hidden;
-  }
   
-  .slider {
-    position: absolute;
-    top: 0;
-    left: 100%;
-    white-space: nowrap;
-    animation: slide 5s infinite linear;
-  }
-  
-  @keyframes slide {
-    from {
-      transform: translateX(0%);
-    }
-    to {
-      transform: translateX(-100%);
-    }
-  }
