@@ -114,7 +114,10 @@ return (
               <Card key={i} className= 'm-3'>
               <Card.Img className="img-thumbnail"  src={item.album.cover}/>
               <Card.Body>
-                 <Card.Title> {item.title}</Card.Title>
+                 <Card.Title style={{ color: 'brown'}}> 
+                  {item.title} <br/> <br/>
+                  {item.artist.name} 
+               </Card.Title>
               </Card.Body>
               <Button className="btn btn-light" onClick={() => playTrack(item)}>
                 {isPlaying && currentTrack === item ? 
