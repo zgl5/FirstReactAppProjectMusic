@@ -4,7 +4,7 @@
 Oweview
 
 This is a simple React project that allows users to search for songs.
-This project was developed with React and used Boostrapalong with CSS.
+This project was developed with React and used Boostrap along with CSS.
  Api key obtained from https://rapidapi.com/hub and, the one image obtained from https://unsplash.com/.
 Api 
 
