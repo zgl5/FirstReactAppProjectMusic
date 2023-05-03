@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "//github.com/zgl5.github.io/FirstReactAppProjectMusic/static/css/main.81790a0f.css",
+    "main.js": "//github.com/zgl5.github.io/FirstReactAppProjectMusic/static/js/main.acd84553.js",
+    "static/js/787.b4896ce3.chunk.js": "//github.com/zgl5.github.io/FirstReactAppProjectMusic/static/js/787.b4896ce3.chunk.js",
+    "static/media/Img.jpg": "//github.com/zgl5.github.io/FirstReactAppProjectMusic/static/media/Img.ff3cb895e76ed60f5386.jpg",
+    "index.html": "//github.com/zgl5.github.io/FirstReactAppProjectMusic/index.html",
+    "main.81790a0f.css.map": "//github.com/zgl5.github.io/FirstReactAppProjectMusic/static/css/main.81790a0f.css.map",
+    "main.acd84553.js.map": "//github.com/zgl5.github.io/FirstReactAppProjectMusic/static/js/main.acd84553.js.map",
+    "787.b4896ce3.chunk.js.map": "//github.com/zgl5.github.io/FirstReactAppProjectMusic/static/js/787.b4896ce3.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.81790a0f.css",
+    "static/js/main.acd84553.js"
+  ]
+}
